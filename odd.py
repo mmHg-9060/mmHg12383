@@ -67,7 +67,7 @@ def home():
         obp_denominator = AB + b + sf # 출루율 분모
 
         # 2. 비율 스탯 계산
-        avg = hits / AB # if AB > 0 else 0 #TODO: 이거 테스트임
+        avg = hits / AB if AB > 0 else 0
         slg = total_bases / AB if AB > 0 else 0
         obp = (hits + b) / obp_denominator if obp_denominator > 0 else 0
         ops = obp + slg
@@ -80,6 +80,12 @@ def home():
         }
         
     return render_template_string(html_template, result=result)
+import os
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    # Render 서버 환경에서는 환경 변수로 설정된 PORT를 사용해야 합니다.
+    # 포트 값이 없으면 기본값인 5000을 사용합니다.
+    port = int(os.environ.get("PORT", 5000))
+    
+    # host='0.0.0.0'으로 설정해야 외부 접속이 허용됩니다.
+    app.run(host='0.0.0.0', port=port)
