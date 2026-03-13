@@ -67,9 +67,9 @@ def home():
         obp_denominator = AB + b + sf # 출루율 분모
 
         # 2. 비율 스탯 계산
-        avg = hits / AB #if AB > 0 else 0
-        slg = total_bases / AB #if AB > 0 else 0
-        obp = (hits + b) / obp_denominator #if obp_denominator > 0 else 0
+        avg = hits / AB if AB > 0 else 0
+        slg = total_bases / AB if AB > 0 else 0
+        obp = (hits + b) / obp_denominator if obp_denominator > 0 else 0
         ops = obp + slg
 
         result = {
